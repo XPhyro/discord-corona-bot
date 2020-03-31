@@ -25,6 +25,8 @@ You should also have installed these libraries:
 
 Please note that, although the bot talks as if it is Dr. Fahrettin Koca, neither me nor the bot is in any way not affiliated or representative of Dr. Fahrettin Koca. This is for the mere purpose of information sharing in a private Discord server.
 
-# YASAL
+# YASAL (=LEGAL)
+
+The following is the Turkish translation of the LEGAL's contents.
 
 Bot Dr. Fahrettin Koca'nın ağzından konuşuyor olmasına karşın, ne botun ne de benim Dr. Fahrettin Koca ile herhangi bir bağlantımız yoktur. Botun birincil ağızdan söyledikleri Dr. Fahrettin Koca'yı temsil etmemektedir. Bu botun yazım amacı sadece özel bir Discord sunucusunda bilgi paylaşımıdır.
