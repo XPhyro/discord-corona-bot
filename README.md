@@ -20,3 +20,11 @@ You should also have installed these libraries:
 |-----------|-------|
 | [discord.py](https://github.com/Rapptz/discord.py) | 1.3.2 |
 | requests | 2.23.0 |
+
+# LEGAL
+
+Please note that, although the bot talks as if it is Dr. Fahrettin Koca, neither me nor the bot is in any way not affiliated or representative of Dr. Fahrettin Koca. This is for the mere purpose of information sharing in a private Discord server.
+
+# YASAL
+
+Bot Dr. Fahrettin Koca'nın ağzından konuşuyor olmasına karşın, ne botun ne de benim Dr. Fahrettin Koca ile herhangi bir bağlantımız yoktur. Botun birincil ağızdan söyledikleri Dr. Fahrettin Koca'yı temsil etmemektedir. Bu botun yazım amacı sadece özel bir Discord sunucusunda bilgi paylaşımıdır.
