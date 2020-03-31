@@ -30,9 +30,25 @@ class MyClient(discord.Client):
 
         if message.content.startswith("!koca"):
             q = str(message.author.mention)
-            if "mention" in message.content:
+            args = [i.lower().replace("ı", "i") for i in message.content.split()[1:]]
+            if len(args) == 0:
+                print(f"Messaging {message.author} on {message.channel}.")
+                await message.channel.send(f"Ben Dr. Fahrettin Koca {q}.")
+                return
+
+            if args[0] == "yardim":
+                print(f"Messaging {message.author} on {message.channel}.")
+                msg = f"{q} Değerli vatandaşımın benden isteyebilecekleri şunlardır:\n"
+                msg += "\n"
+                msg += "etiket: Veri paylaşımlarımda sizi etiketlememi, veya zaten etiketliyorsam listeden çıkarmamı sağlar.\n"
+                msg += "yardım: Bu yazıyı paylaşmamı sağlar.\n"
+                msg += "diğer komutlar: heal/iyileştir\n"
+                msg += "\n"
+                msg += "İstekler şu şekilde kullanılır: !koca (komut) [seçenek] {argüman} [seçenek] {argüman}..."
+                await message.channel.send(msg)
+            elif args[0] == "etiket":
                 if message.channel.id != DISCORD_CHANNEL_ID:
-                    await message.channel.send(f"Bu kanaldan mention listesine ekleyemem {q}.")
+                    await message.channel.send(f"Bu kanaldan etiket listesine ekleyemem {q}.")
                     return
                 with open(MENTIONS_FILENAME, "r") as f:
                     r = f.readlines()
@@ -42,7 +58,7 @@ class MyClient(discord.Client):
                     with open(MENTIONS_FILENAME, "w+") as f:
                         f.write("".join(r))
 
-                    await message.channel.send(f"Mention listesinden çıkarıldın {q}.")
+                    await message.channel.send(f"Etiket listesinden çıkarıldın {q}.")
                 else:
                     print(f"Adding {q} to mention list.")
                     r.append(q + "\n")
@@ -50,9 +66,12 @@ class MyClient(discord.Client):
                         f.write("".join(r))
 
                     await message.channel.send(f"Mention listesine eklendin {q}.")
+            elif args[0] == "heal" or args[0] == "iyileştir":
+                print(f"Messaging {message.author} on {message.channel}.")
+                await message.channel.send(f"Bütün sağlık çalışanlarımız gece gündüz, dişini tırnağına takmadan (koronaya yardımcı olur diye), sizler için çalışmakta. Ülkemizin ve dünyanın en yakın zamanda bu korona isimli illetten kurtulmasını, vefat edenlerimize rahmet ve yakınlarınan sabır ve baş sağlığı, hastalarımıza ise şifa diliyorum {q}.")
             else:
                 print(f"Messaging {message.author} on {message.channel}.")
-                await message.channel.send(f"Ben Dr. Fahrettin Koca {q}.")
+                await message.channel.send(f"Değerli vatandaşım, lütfen özrümü kabul edin, çünkü dediğinizi anlayamadım {q}.")
 
     
     async def my_background_task(self):
@@ -68,7 +87,12 @@ class MyClient(discord.Client):
                 update = int(uf.readlines()[0])
                 uf.close()
 
-            k = j["data"][11]
+            k = []
+            for i in j["data"]:
+                if i["country"] == "Turkey":
+                    k = i
+                    break
+
             if update >= k["updated"]:
                 print(f"Old data: {update}\nNew data: {k['updated']}.")
                 print("Passing since no new data is avaliable.")
