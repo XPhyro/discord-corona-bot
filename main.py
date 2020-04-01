@@ -38,7 +38,7 @@ class MyClient(discord.Client):
 
             if args[0] == "yardim":
                 print(f"Messaging {message.author} on {message.channel}.")
-                msg = f"{q} Değerli vatandaşımın benden isteyebilecekleri şunlardır:\n"
+                msg = f"{q} Değerli vatandaşlarımın benden isteyebilecekleri şunlardır:\n"
                 msg += "\n"
                 msg += "etiket: Veri paylaşımlarımda sizi etiketlememi, veya zaten etiketliyorsam listeden çıkarmamı sağlar.\n"
                 msg += "yardım: Bu yazıyı paylaşmamı sağlar.\n"
