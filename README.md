@@ -27,6 +27,6 @@ Please note that, although the bot talks as if it is Dr. Fahrettin Koca, neither
 
 # YASAL
 
-The following is the Turkish translation of LEGAL's contents.
+The following is the Turkish translation of LEGAL's content.
 
 Bot Dr. Fahrettin Koca'nın ağzından konuşuyor olmasına karşın, ne botun ne de benim Dr. Fahrettin Koca ile herhangi bir bağlantımız yoktur. Botun birincil ağızdan söyledikleri Dr. Fahrettin Koca'yı temsil etmemektedir. Bu botun yazım amacı sadece özel bir Discord sunucusunda bilgi paylaşımıdır.
