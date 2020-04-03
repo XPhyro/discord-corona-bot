@@ -1,11 +1,11 @@
+import asyncio
 import datetime as dt
 import hashlib
-import discord
-import asyncio
 import json
+import discord
 import requests
-from secrets import *
 from filenames import *
+from secrets import *
 
 
 class MyClient(discord.Client):
@@ -14,10 +14,8 @@ class MyClient(discord.Client):
 
         self.bg_task = self.loop.create_task(self.my_background_task())
 
-
     async def on_ready(self):
         print(f"Logged in as\n{self.user.name}\n{self.user.id}\n")
-    
 
     async def on_message(self, message):
         # we do not want the bot to reply to itself
@@ -34,7 +32,9 @@ class MyClient(discord.Client):
 
             if args[0] == "yardim":
                 print(f"Messaging {message.author} on {message.channel}.")
-                msg = f"{q} Değerli vatandaşlarımın benden isteyebilecekleri şunlardır:\n"
+                msg = (
+                    f"{q} Değerli vatandaşlarımın benden isteyebilecekleri şunlardır:\n"
+                )
                 msg += "\n"
                 msg += "etiket: Veri paylaşımlarımda sizi etiketlememi, veya zaten etiketliyorsam listeden çıkarmamı sağlar.\n"
                 msg += "yardım: Bu yazıyı paylaşmamı sağlar.\n"
@@ -44,7 +44,9 @@ class MyClient(discord.Client):
                 await message.channel.send(msg)
             elif args[0] == "etiket":
                 if message.channel.id != DISCORD_CHANNEL_ID:
-                    await message.channel.send(f"Bu kanaldan etiket listesine ekleyemem {q}.")
+                    await message.channel.send(
+                        f"Bu kanaldan etiket listesine ekleyemem {q}."
+                    )
                     return
                 with open(MENTIONS_FILENAME, "r") as f:
                     r = f.readlines()
@@ -64,12 +66,15 @@ class MyClient(discord.Client):
                     await message.channel.send(f"Mention listesine eklendin {q}.")
             elif args[0] == "heal" or args[0] == "iyileştir":
                 print(f"Messaging {message.author} on {message.channel}.")
-                await message.channel.send(f"Bütün sağlık çalışanlarımız gece gündüz, dişini tırnağına takmadan (koronaya yardımcı olur diye), sizler için çalışmakta. Ülkemizin ve dünyanın en yakın zamanda bu korona isimli illetten kurtulmasını, vefat edenlerimize rahmet ve yakınlarınan sabır ve baş sağlığı, hastalarımıza ise şifa diliyorum {q}.")
+                await message.channel.send(
+                    f"Bütün sağlık çalışanlarımız gece gündüz, dişini tırnağına takmadan (koronaya yardımcı olur diye), sizler için çalışmakta. Ülkemizin ve dünyanın en yakın zamanda bu korona isimli illetten kurtulmasını, vefat edenlerimize rahmet ve yakınlarınan sabır ve baş sağlığı, hastalarımıza ise şifa diliyorum {q}."
+                )
             else:
                 print(f"Messaging {message.author} on {message.channel}.")
-                await message.channel.send(f"Değerli vatandaşım, lütfen özrümü kabul edin, çünkü dediğinizi anlayamadım {q}.")
+                await message.channel.send(
+                    f"Değerli vatandaşım, lütfen özrümü kabul edin, çünkü dediğinizi anlayamadım {q}."
+                )
 
-    
     async def my_background_task(self):
         await self.wait_until_ready()
 
@@ -117,15 +122,15 @@ class MyClient(discord.Client):
             msg += "\n"
             msg += "Güncelleme tarihi: {}"
             msg += "```"
-            msg = msg.format(   
-                    k["cases"],
-                    k["todayCases"],
-                    k["deaths"],
-                    k["todayDeaths"],
-                    k["recovered"],
-                    k["active"],
-                    k["critical"],
-                    dt.datetime.fromtimestamp(update // 1000)
+            msg = msg.format(
+                k["cases"],
+                k["todayCases"],
+                k["deaths"],
+                k["todayDeaths"],
+                k["recovered"],
+                k["active"],
+                k["critical"],
+                dt.datetime.fromtimestamp(update // 1000),
             )
             newIdentifier = "".join(msg.splitlines()[-9:-2])
             newHash = hashlib.sha256(newIdentifier.encode("utf-8")).hexdigest()
@@ -140,7 +145,7 @@ class MyClient(discord.Client):
                 print(f"Message sent: \n{msg}")
             else:
                 print("Passing since hashes are equal.")
-            
+
             await asyncio.sleep(5)
 
 
