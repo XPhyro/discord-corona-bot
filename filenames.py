@@ -1,0 +1,3 @@
+MENTIONS_FILENAME = "mentions"
+UPDATE_FILENAME = "update"
+HASH_FILENAME = "hash"

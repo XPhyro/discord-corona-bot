@@ -5,11 +5,7 @@ import asyncio
 import json
 import requests
 from secrets import *
-
-
-MENTIONS_FILENAME = "mentions"
-UPDATE_FILENAME = "update"
-HASH_FILENAME = "hash"
+from filenames import *
 
 
 class MyClient(discord.Client):
