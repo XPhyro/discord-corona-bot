@@ -17,6 +17,12 @@ class MyClient(discord.Client):
     async def on_ready(self):
         print(f"Logged in as\n{self.user.name}\n{self.user.id}\n")
 
+        self.change_presence(
+            activity=discord.Streaming(
+                name="Hayat Eve Sığar", url="https://www.twitch.tv/nakucode"
+            )
+        )
+
     async def on_message(self, message):
         # we do not want the bot to reply to itself
         if message.author.id == self.user.id:
