@@ -63,7 +63,7 @@ class MyClient(discord.Client):
                     with open(MENTIONS_FILENAME, "w+") as f:
                         f.write("".join(r))
 
-                    await message.channel.send(f"Mention listesine eklendin {q}.")
+                    await message.channel.send(f"Etiket listesine eklendin {q}.")
             elif args[0] == "heal" or args[0] == "iyileştir":
                 print(f"Messaging {message.author} on {message.channel}.")
                 await message.channel.send(
