@@ -4,7 +4,7 @@ import hashlib
 import json
 import discord
 import requests
-from filenames import *
+from config import *
 from secrets import *
 
 
