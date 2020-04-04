@@ -17,7 +17,7 @@ class MyClient(discord.Client):
     async def on_ready(self):
         print(f"Logged in as\n{self.user.name}\n{self.user.id}\n")
 
-        self.change_presence(
+        await self.change_presence(
             activity=discord.Streaming(
                 name="Hayat Eve Sığar", url="https://www.twitch.tv/nakucode"
             )
@@ -138,7 +138,11 @@ class MyClient(discord.Client):
                 k["critical"],
                 dt.datetime.fromtimestamp(update // 1000),
             )
-            newIdentifier = "".join(msg.splitlines()[-9:-2])
+            newIdentifier = msg.splitlines()[-9:-2]
+            newIdentifier.pop(3)
+            newIdentifier.pop(1)
+            newIdentifier = "".join(newIdentifier)
+
             newHash = hashlib.sha256(newIdentifier.encode("utf-8")).hexdigest()
             with open(HASH_FILENAME, "r") as mif:
                 oldHash = mif.read()
