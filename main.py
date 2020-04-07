@@ -5,7 +5,8 @@ import json
 from multiprocessing import Queue
 
 import discord
-from tweepy import OAuthHandler, Stream, StreamListener
+
+# T#from tweepy import OAuthHandler, Stream, StreamListener
 
 import requests
 
@@ -13,14 +14,14 @@ from config import *
 from secrets import *
 
 
-class TwitterListener(StreamListener):
-    def on_data(self, data):
-        global q
-        q.put(data)
-        return True
-
-    def on_error(self, status):
-        print(status)
+# T#class TwitterListener(StreamListener):
+# T#    def on_data(self, data):
+# T#        global q
+# T#        q.put(data)
+# T#        return True
+# T#
+# T#    def on_error(self, status):
+# T#        print(f"ERROR_TWITTER:\n{self}\n{status}")
 
 
 class MyClient(discord.Client):
@@ -34,17 +35,17 @@ class MyClient(discord.Client):
 
         await self.change_presence(
             activity=discord.Streaming(
-                name="Hayat Eve Sığar", url="https://www.twitch.tv/nakucode"
+                name=DISCORD_PRESENCE_STREAM_NAME, url=DISCORD_PRESENCE_STREAM_URL
             )
         )
 
-        twitter_listener = TwitterListener()
-
-        twitter_auth = OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
-        twitter_auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
-
-        twitter_stream = Stream(twitter_auth, twitter_listener)
-        twitter_stream.filter(follow=[TWITTER_ACCOUNT_TO_FOLLOW])
+    # T#        twitter_listener = TwitterListener()
+    # T#
+    # T#        twitter_auth = OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
+    # T#        twitter_auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
+    # T#
+    # T#        twitter_stream = Stream(twitter_auth, twitter_listener)
+    # T#        twitter_stream.filter(follow=[TWITTER_ACCOUNT_TO_FOLLOW])
 
     async def on_message(self, message):
         if message.author.id == self.user.id:
@@ -178,15 +179,15 @@ class MyClient(discord.Client):
             else:
                 print("Passing since hashes are equal.")
 
-            await asyncio.sleep(60)
-
-            while q.qsize():
-                await channel.send(q.get())
+            # T#            await asyncio.sleep(60)
+            # T#
+            # T#            while q.qsize():
+            # T#                await channel.send(q.get())
 
             await asyncio.sleep(5)
 
 
-q = Queue()
+# T#q = Queue()
 
 client = MyClient()
 client.run(DISCORD_TOKEN)
