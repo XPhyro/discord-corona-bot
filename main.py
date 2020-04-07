@@ -2,10 +2,25 @@ import asyncio
 import datetime as dt
 import hashlib
 import json
+from multiprocessing import Queue
+
 import discord
+from tweepy import OAuthHandler, Stream, StreamListener
+
 import requests
+
 from config import *
 from secrets import *
+
+
+class TwitterListener(StreamListener):
+    def on_data(self, data):
+        global q
+        q.put(data)
+        return True
+
+    def on_error(self, status):
+        print(status)
 
 
 class MyClient(discord.Client):
@@ -23,8 +38,15 @@ class MyClient(discord.Client):
             )
         )
 
+        twitter_listener = TwitterListener()
+
+        twitter_auth = OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
+        twitter_auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
+
+        twitter_stream = Stream(twitter_auth, twitter_listener)
+        twitter_stream.filter(follow=[TWITTER_ACCOUNT_TO_FOLLOW])
+
     async def on_message(self, message):
-        # we do not want the bot to reply to itself
         if message.author.id == self.user.id:
             return
 
@@ -156,13 +178,15 @@ class MyClient(discord.Client):
             else:
                 print("Passing since hashes are equal.")
 
+            await asyncio.sleep(60)
+
+            while q.qsize():
+                await channel.send(q.get())
+
             await asyncio.sleep(5)
 
 
+q = Queue()
+
 client = MyClient()
-try:
-    client.run(DISCORD_TOKEN)
-except discord.HTTPException as e:
-    r = e.response
-    for i in r:
-        print(i)
+client.run(DISCORD_TOKEN)
