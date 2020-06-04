@@ -25,10 +25,10 @@ I believe the bot should work on Linux/MacOS/Windows, but I have not tested it o
 
 # LEGAL
 
-Please note that, although the bot talks as if it is Dr. Fahrettin Koca, neither me nor the bot is in any way not affiliated or representative of Dr. Fahrettin Koca. This is for the mere purpose of information sharing in a private Discord server.
+Please note that, although the bot talks as if it is Dr. Fahrettin Koca, neither I nor the bot are affiliated with or representative of Dr. Fahrettin Koca. This bot is for the mere purpose of information sharing in a private Discord server.
 
 # YASAL
 
 The following is the Turkish translation of LEGAL's content.
 
-Bot Dr. Fahrettin Koca'nın ağzından konuşuyor olmasına karşın, ne botun ne de benim Dr. Fahrettin Koca ile herhangi bir bağlantımız yoktur. Botun birincil ağızdan söyledikleri Dr. Fahrettin Koca'yı temsil etmemektedir. Bu botun yazım amacı sadece özel bir Discord sunucusunda bilgi paylaşımıdır.
+Bot Dr. Fahrettin Koca'nın ağzından konuşuyor olmasına karşın, ne botun ne de benim Dr. Fahrettin Koca ile herhangi bir bağlantımız yoktur. Botun birincil ağızdan söyledikleri Dr. Fahrettin Koca'yı temsil etmemektedir. Bu botun yazılım amacı sadece kapalı bir Discord sunucusunda bilgi paylaşımıdır.
